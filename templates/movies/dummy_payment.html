@@ -1,0 +1,26 @@
+{% extends "users/basic.html" %}
+{% block content %}
+<div class="container mt-5 text-center">
+  <h2 class="mb-3">💳 Dummy Payment Page</h2>
+  <p>Movie: <strong>{{ theater.movie.name }}</strong></p>
+  <p>Theater: <strong>{{ theater.name }}</strong></p>
+  <p>Time: <strong>{{ theater.time }}</strong></p>
+  <p>Seats Selected: 
+    {% for seat in seats %}
+      <span class="badge bg-success">{{ seat.seat_number }}</span>
+    {% endfor %}
+  </p>
+  <h4 class="mt-4">Total Price: ₹{{ total_price }}</h4>
+
+  {% if error %}
+    <div class="alert alert-danger mt-3">{{ error }}</div>
+  {% endif %}
+
+  <form method="POST">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-primary btn-lg mt-3">Pay Now</button>
+  </form>
+</div>
+{% endblock %}
+
+

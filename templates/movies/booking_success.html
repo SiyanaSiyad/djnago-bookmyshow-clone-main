@@ -1,0 +1,8 @@
+{% extends "users/basic.html" %}
+{% block content %}
+<div class="container mt-5 text-center">
+  <h2 class="text-success">🎉 Booking Successful!</h2>
+  <p class="lead">Your seats have been booked. Enjoy your movie!</p>
+  <a href="{% url 'profile' %}" class="btn btn-outline-primary mt-3">Go to My Profile</a>
+</div>
+{% endblock %}

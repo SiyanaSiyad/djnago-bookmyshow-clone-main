@@ -1,0 +1,83 @@
+<!-- templates/movies/admin_dashboard.html -->
+
+{% extends 'users/basic.html' %}
+{% block content %}
+<div class="container mt-5">
+  <h2 class="mb-4">🎯 Admin Dashboard</h2>
+
+  <!-- Total Revenue -->
+  <div class="mb-4">
+    <h4>Total Revenue</h4>
+    <p class="lead">₹{{ total_revenue }}</p>
+  </div>
+
+  <!-- Top 5 Popular Movies -->
+  <div class="mb-4">
+    <h4>Top 5 Most Popular Movies</h4>
+    <ul class="list-group">
+      {% for movie in popular_movies %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          {{ movie.name }}
+          <span class="badge bg-primary rounded-pill">{{ movie.bookings_count }} bookings</span>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <!-- Pie Chart for Top 5 Popular Movies -->
+  <div class="mt-5">
+    <h4>📊 Bookings Distribution - Top 5 Movies</h4>
+    <canvas id="popularMoviesChart" width="400" height="300"></canvas>
+  </div>
+
+  <!-- Top 5 Busiest Theaters -->
+  <div class="mt-5">
+    <h4>Top 5 Busiest Theaters</h4>
+    <ul class="list-group">
+      {% for theater in busy_theaters %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          {{ theater.name }} ({{ theater.movie.name }})
+          <span class="badge bg-success rounded-pill">{{ theater.bookings_count }} bookings</span>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+<!-- Chart.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- Pie Chart Script -->
+<script>
+  const ctx = document.getElementById('popularMoviesChart').getContext('2d');
+  const popularMoviesChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+      labels: [{% for movie in popular_movies %}"{{ movie.name }}"{% if not forloop.last %}, {% endif %}{% endfor %}],
+      datasets: [{
+        label: 'Bookings',
+        data: [{% for movie in popular_movies %}{{ movie.bookings_count }}{% if not forloop.last %}, {% endif %}{% endfor %}],
+        backgroundColor: [
+          '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF'
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'bottom'
+        },
+        title: {
+          display: true,
+          text: 'Top 5 Movie Bookings'
+        }
+      }
+    }
+  });
+</script>
+{% endblock %}
+<canvas id="popularMoviesChart"></canvas>
+<canvas id="theaterBarChart"></canvas>
+<canvas id="monthlyRevenueChart"></canvas>
