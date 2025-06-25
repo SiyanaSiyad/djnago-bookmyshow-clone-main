@@ -81,6 +81,7 @@ else:
     }
     DATABASES['default'] = dj_database_url.parse('postgresql://django_bookmyshow_j71g_user:Uv0BMHjUhgRbK15iAG0QFj35qZy89ouS@dpg-d1dtab2dbo4c73e9pf4g-a.oregon-postgres.render.com/django_bookmyshow_j71g')
 print("DATABASE_URL =", os.environ.get("DATABASE_URL"))
+os.system('python manage.py migrate')
 
 #postgresql://django_bookmyshow_j71g_user:Uv0BMHjUhgRbK15iAG0QFj35qZy89ouS@dpg-d1dtab2dbo4c73e9pf4g-a.oregon-postgres.render.com/django_bookmyshow_j71g
 
