@@ -79,6 +79,9 @@ else:
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
+    DATABASES['default'] = dj_database_url.parse('postgresql://django_bookmyshow_j71g_user:Uv0BMHjUhgRbK15iAG0QFj35qZy89ouS@dpg-d1dtab2dbo4c73e9pf4g-a.oregon-postgres.render.com/django_bookmyshow_j71g')
+
+#postgresql://django_bookmyshow_j71g_user:Uv0BMHjUhgRbK15iAG0QFj35qZy89ouS@dpg-d1dtab2dbo4c73e9pf4g-a.oregon-postgres.render.com/django_bookmyshow_j71g
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
@@ -196,7 +199,7 @@ else:
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
-
+#postgresql://django_bookmyshow_j71g_user:Uv0BMHjUhgRbK15iAG0QFj35qZy89ouS@dpg-d1dtab2dbo4c73e9pf4g-a.oregon-postgres.render.com/django_bookmyshow_j71g
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
     {
