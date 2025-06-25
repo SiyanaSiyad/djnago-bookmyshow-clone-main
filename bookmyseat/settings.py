@@ -66,10 +66,10 @@ USE_POSTGRES = os.getenv("USE_POSTGRES", "False") == "True"
 
 if USE_POSTGRES:
     DATABASES = {
-        'default': dj_database_url.parse(
-            'postgresql://django_bookmyshow_user:uF7eu2GnnDbqvUgYswCYpIS5TKTtsAUS@dpg-cshi84o8fa8c739dsme0-a.oregon-postgres.render.com/django_bookmyshow',
-            conn_max_age=600,
-            ssl_require=True
+         'default': dj_database_url.config(
+        default=os.environ.get('DATABASE_URL'),
+        conn_max_age=600,
+        ssl_require=True
         )
     }
 else:
