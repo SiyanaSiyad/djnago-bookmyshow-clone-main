@@ -195,6 +195,8 @@ if USE_POSTGRES:
 else:
     DATABASES = {
         'default': {
+                DATABASES['default'] = dj_database_url.parse('postgresql://django_bookmyshow_j71g_user:Uv0BMHjUhgRbK15iAG0QFj35qZy89ouS@dpg-d1dtab2dbo4c73e9pf4g-a.oregon-postgres.render.com/django_bookmyshow_j71g')
+
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': BASE_DIR / 'db.sqlite3',
         }
